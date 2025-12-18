@@ -1,0 +1,71 @@
+﻿View → Terminal
+
+dir
+
+python --version
+
+python -m venv venv
+
+venv\Scripts\activate
+
+python -m pip install --upgrade pip setuptools wheel
+
+pip install -r requirements.txt
+pip install SpeechRecognition
+pip install PyAudio
+=====
+On Windows, if you get errors installing PyAudio via pip, do this:
+
+Go to https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio
+
+Download the .whl file matching your Python version and architecture
+
+Install it using:
+
+pip install path\to\PyAudio‑0.2.11‑cp311‑cp311‑win_amd64.whl
+=====
+
+python -c "import fastapi, streamlit, torch; print('OK')"
+
+Open 3 terminals tabs for Backend(terminal 2) and Frontend(terminal 3) and run:
+run below command in terminal 1:
+ollama serve
+
+run below command in terminal 2:
+#uvicorn backend.api.main:app --reload   
+cd backend
+..\venv\Scripts\activate
+uvicorn api.main:app --reload
+
+
+
+Leave this terminal running.
+
+run below command in terminal 3:
+cd frontend
+..\venv\Scripts\activate
+streamlit run app.py
+
+
+===========
+ollama GUI was closed but pid was not killed on port 11434:
+C:\Users\SKS>netstat -aon | findstr 11434
+  TCP    127.0.0.1:11434        0.0.0.0:0              LISTENING       10872
+  TCP    127.0.0.1:11434        127.0.0.1:53422        ESTABLISHED     10872
+  TCP    127.0.0.1:11434        127.0.0.1:53785        ESTABLISHED     10872
+  TCP    127.0.0.1:53422        127.0.0.1:11434        ESTABLISHED     13232
+  TCP    127.0.0.1:53785        127.0.0.1:11434        ESTABLISHED     16180
+
+C:\Users\SKS>taskkill /PID 10872 /F
+SUCCESS: The process with PID 10872 has been terminated.
+
+Open Task manager and close ollama app exe
+run 'ollama serve' in cmd prompt and then 'ollama list'
+ollama pull llama3
+
+activate project venv by venv/Scripts/activate and run following commands:
+import ollama
+
+reply = ollama.chat(model="llama3", messages=[{"role":"user","content":"hi"}])
+print(reply['message']['content'])
+==============

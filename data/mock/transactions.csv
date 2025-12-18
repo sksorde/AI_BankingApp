@@ -1,0 +1,6 @@
+
+date,description,amount,type
+2025-01-02,Amazon Purchase,-2499,Debit
+2025-01-05,Salary Credit,75000,Credit
+2025-01-10,ATM Withdrawal,-10000,Debit
+2025-01-12,Unknown Merchant XYZ,-4500,Debit
